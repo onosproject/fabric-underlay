@@ -12,13 +12,12 @@ import (
 	"github.com/onosproject/onos-lib-go/pkg/northbound"
 )
 
-var log = logging.GetLogger("manager")
+var log = logging.GetLogger()
 
 // Config is a manager configuration
 type Config struct {
-	AgentUUID     string
-	TargetAddress string
-	ServiceFlags  *cli.ServiceEndpointFlags
+	ServiceFlags *cli.ServiceEndpointFlags
+	TopoAddress  string
 }
 
 // Manager is a single point of entry for the fabric-underlay
@@ -30,13 +29,13 @@ type Manager struct {
 
 // NewManager initializes the application manager
 func NewManager(cfg Config) *Manager {
-	log.Infow("Creating manager")
+	log.Info("Creating application manager")
 	return &Manager{Config: cfg}
 }
 
 // Start initializes and starts the link controller and the NB gNMI API.
 func (m *Manager) Start() error {
-	log.Info("Starting Manager")
+	log.Info("Starting application Manager")
 
 	// Initialize and start the app controller
 	m.controller = app.NewController()
@@ -51,6 +50,6 @@ func (m *Manager) Start() error {
 
 // Stop stops the manager
 func (m *Manager) Stop() {
-	log.Infow("Stopping Manager")
+	log.Infow("Stopping application Manager")
 	m.controller.Stop()
 }

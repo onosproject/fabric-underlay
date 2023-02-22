@@ -10,6 +10,7 @@ import (
 	"github.com/onosproject/onos-lib-go/pkg/cli"
 	"github.com/onosproject/onos-lib-go/pkg/logging"
 	"github.com/onosproject/onos-lib-go/pkg/northbound"
+	"github.com/onosproject/onos-net-lib/pkg/realm"
 )
 
 var log = logging.GetLogger()
@@ -18,6 +19,7 @@ var log = logging.GetLogger()
 type Config struct {
 	ServiceFlags *cli.ServiceEndpointFlags
 	TopoAddress  string
+	RealmOptions *realm.Options
 }
 
 // Manager is a single point of entry for the fabric-underlay
